@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
   toggledValue = true;
   @Output() toggleChange = new EventEmitter<boolean>();
   toggled(){
-    if(this.toggledValue === undefined){
+    if (this.toggledValue === undefined){
       this.toggledValue = true;
     }
     this.toggledValue = !this.toggledValue;
