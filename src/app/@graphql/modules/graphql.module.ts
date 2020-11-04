@@ -1,11 +1,10 @@
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { onError } from 'apollo-link-error';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { NgModule } from '@angular/core';
-import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   imports: [
@@ -15,18 +14,18 @@ import { HttpClientModule } from '@angular/common/http';
   ]
 })
 export class GraphqlModule {
-  constructor(apollo: Apollo, httpLink: HttpLink ) {
-    // Para capturar los errores de connsulta y/o red
-    const errorLink = onError(({graphQLErrors, networkError})=>{
-      if (graphQLErrors){
-        console.log('GarpgQL Errors', graphQLErrors);
+  constructor(apollo: Apollo, httpLink: HttpLink) {
+    // Para capturar los errores de consulta y/o de red
+    const errorLink = onError(({graphQLErrors, networkError }) => {
+      if (graphQLErrors) {
+        console.log('GraphQL Errors', graphQLErrors);
       }
 
-      if (networkError){
-        console.log('network Error', networkError);
+      if (networkError) {
+        console.log('Networkd Errors', networkError);
       }
     });
-    const uri = 'http://localhost:2003/graphql';
+    const uri = 'http://localhost:2002/graphql';
     const link = ApolloLink.from(
       [
         errorLink,
