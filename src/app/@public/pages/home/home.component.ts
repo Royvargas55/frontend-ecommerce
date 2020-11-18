@@ -20,11 +20,11 @@ export class HomeComponent implements OnInit {
     this.auth.getMe().subscribe( result => {
       console.log(result);
     });
-
-    this.user.getUsers().subscribe( result => {
+    */
+    this.user.getUsers(2, 1).subscribe( result => {
       console.log(result);
     });
-    */
+
   }
 
 }

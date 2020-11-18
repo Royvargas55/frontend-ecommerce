@@ -25,7 +25,7 @@ export class GraphqlModule {
         console.log('Networkd Errors', networkError);
       }
     });
-    const uri = 'http://localhost:2002/graphql';
+    const uri = 'http://localhost:2003/graphql';
     const link = ApolloLink.from(
       [
         errorLink,
