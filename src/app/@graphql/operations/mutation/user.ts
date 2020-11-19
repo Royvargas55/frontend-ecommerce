@@ -12,3 +12,16 @@ export const REGISTER_USER = gql`
     }
     ${ USER_FRAGMENT }
 `;
+
+export const UPDATE_USER = gql`
+    mutation updateUser($user: userInput!, $include: Boolean!) {
+        updateUser(user: $user) {
+            status
+            message
+            user {
+                ...UserObject
+            }
+        }
+    }
+    ${ USER_FRAGMENT }
+`;
