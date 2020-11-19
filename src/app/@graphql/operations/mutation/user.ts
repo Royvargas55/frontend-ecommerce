@@ -25,3 +25,13 @@ export const UPDATE_USER = gql`
     }
     ${ USER_FRAGMENT }
 `;
+
+
+export const BLOCK_USER = gql`
+    mutation blockUser($id: Int!) {
+        blockUser(id: $id){
+            status
+            message
+        }
+    }
+`;

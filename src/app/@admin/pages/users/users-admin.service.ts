@@ -2,7 +2,7 @@ import { IRegisterForm } from '@core/interfaces/register.interface';
 import { UsersService } from '@core/services/users.service';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/internal/operators/map';
-import { UPDATE_USER } from '@graphql/operations/mutation/user';
+import { BLOCK_USER, UPDATE_USER } from '@graphql/operations/mutation/user';
 import { ApiService } from '@graphql/services/api.service';
 import { Apollo } from 'apollo-angular';
 
@@ -32,14 +32,13 @@ export class UsersAdminService  extends ApiService{
     }));
   }
 
-  /*
-  block(id: string) {
+
+  block(id: number) {
     return this.set(
       BLOCK_USER, { id }
     ).pipe(map((result: any) => {
       return result.blockUser;
     }));
   }
-  */
 
 }

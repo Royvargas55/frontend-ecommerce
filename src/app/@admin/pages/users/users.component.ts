@@ -89,9 +89,7 @@ export class UsersComponent implements OnInit {
         this.addForm(html);
         break;
       case 'edit':
-        console.log("Entra al edit");
         this.updateForm(html, user);
-        console.log("Sale del edit");
         break;
       case 'info':
         const result = await optionsWithDetails(
@@ -103,13 +101,13 @@ export class UsersComponent implements OnInit {
           '<i class="fas fa-lock"></i> Bloquear'
         );
         if ( result === true) {
-          // this.updateForm(html, user);
+          this.updateForm(html, user);
         } else if ( result === false) {
-          // this.blockForm(user);
+          this.blockForm(user);
         }
         break;
       case 'block':
-        // this.blockForm(user);
+        this.blockForm(user);
         break;
       default:
         break;
@@ -158,6 +156,30 @@ export class UsersComponent implements OnInit {
         basicAlert(TYPE_ALERT.WARNING, res.message);
       });
     }
+  }
+
+  private async blockForm(user: any) {
+    const result = await optionsWithDetails(
+      '¿Bloquear?',
+      `Si bloqueas ya no se vera el usuario`,
+      415,
+      'No bloquear',
+      'Bloquear'
+    );
+    if (result === false) {
+      this.blockUser(user.id);
+    }
+  }
+
+  private blockUser(id: number) {
+    this.service.block(id).subscribe((res: any) => {
+      console.log(res);
+      if (res.status) {
+        basicAlert(TYPE_ALERT.SUCCESS, res.message);
+        return;
+      }
+      basicAlert(TYPE_ALERT.WARNING, res.message);
+    });
   }
 
 }
