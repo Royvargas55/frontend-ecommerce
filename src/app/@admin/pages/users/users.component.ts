@@ -8,6 +8,7 @@ import { DocumentNode } from 'graphql';
 import { UsersAdminService } from './users-admin.service';
 import { basicAlert } from '@shared/alerts/toasts';
 import { TYPE_ALERT } from '@shared/alerts/values.config';
+import { UsersService } from '@core/services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -22,7 +23,7 @@ export class UsersComponent implements OnInit {
   columns: Array<ITableColumns>;
   include: boolean;
 
-  constructor(private service: UsersAdminService) {}
+  constructor(private service: UsersAdminService, private userService: UsersService) {}
 
   ngOnInit(): void {
     this.context = {};
@@ -134,6 +135,7 @@ export class UsersComponent implements OnInit {
         basicAlert(TYPE_ALERT.WARNING, res.message);
       });
     }
+
   }
 
   private async updateForm(html: string, user: any) {
