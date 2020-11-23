@@ -1,3 +1,4 @@
+import { ACTIVE_FILTERS } from './../../@core/constants/filters';
 import { IInfoPage } from '@core/interfaces/result-data.interface';
 import { IResultData } from '@core/interfaces/result-data.interface';
 import { USERS_LIST_QUERY } from '@graphql/operations/query/user';
@@ -20,6 +21,7 @@ export class TablePaginationComponent implements OnInit {
   @Input() include = true;
   @Input() resultData: IResultData;
   @Input() tableColumns: Array<ITableColumns> = undefined;
+  @Input() filterActiveValues: ACTIVE_FILTERS = ACTIVE_FILTERS.ACTIVE;
   @Output() manageItem = new EventEmitter<Array<any>>();
   infoPage: IInfoPage;
   data$: Observable<any>;
@@ -49,7 +51,8 @@ export class TablePaginationComponent implements OnInit {
     const variables = {
       page: this.infoPage.page,
       itemsPage: this.infoPage.itemsPage,
-      include: this.include
+      include: this.include,
+      active: this.filterActiveValues
     };
     console.log(variables.itemsPage);
     this.data$ = this.service.getCollectionData(this.query, variables, {}).pipe(
