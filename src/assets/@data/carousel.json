@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "title": "Programación básica",
+      "description": "Technology",
+      "url": "http://www.rockstargames.com/V/",
+      "background": "https://i.imgur.com/IFdgW77.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Agile Foundations",
+      "description": "Professional Growth",
+      "url": "https://tombraider.square-enix-games.com/en-us",
+      "background": "https://i.imgur.com/pLjsKPZ.png"
+    },
+    {
+      "id": 3,
+      "title": "HTML y CSS: Avanzado",
+      "description": "Technology",
+      "url": "https://tombraider.square-enix-games.com/en-us",
+      "background": "https://i.imgur.com/1O7Uksd.jpg"
+    }
+  ]
+  

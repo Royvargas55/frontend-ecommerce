@@ -29,10 +29,7 @@ export class UsersComponent implements OnInit {
   include: boolean;
   filterActiveValues: ACTIVE_FILTERS = ACTIVE_FILTERS.ACTIVE;
 
-  constructor(
-    private service: UsersAdminService,
-    private userService: UsersService
-  ) {}
+  constructor(private service: UsersAdminService) {}
 
   ngOnInit(): void {
     this.context = {};
