@@ -1,0 +1,37 @@
+[
+    {
+        "url": "/",
+        "label": "Inicio",
+        "icon": ""
+    },
+    {
+        "url": "/courses/platforms/Business",
+        "label": "Cursos de negocios",
+        "icon": ""
+    },
+    {
+        "url": "/courses/platforms/Creative",
+        "label": "Cursos creativos ",
+        "icon": ""
+    },
+    {
+        "url": "/courses/platforms/Technology",
+        "label": "Cursos de tecnología",
+        "icon": ""
+    },
+    {
+        "url": "/courses/promotions/last-units",
+        "label": "Últimas novedades",
+        "icon": ""
+    },
+    {
+        "url": "/courses/promotions/offers",
+        "label": "En liquidación",
+        "icon": ""
+    },
+    {
+        "url": "/contact",
+        "label": "Contacto",
+        "icon": ""
+    }
+]

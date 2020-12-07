@@ -4,55 +4,45 @@ import { IProduct } from '@mugan86/ng-shop-ui/lib/interfaces/product.interface';
 import { CURRENCIES_SYMBOL, CURRENCY_LIST } from '@mugan86/ng-shop-ui';
 import { ProductsService } from '@core/services/products.service';
 import { ACTIVE_FILTERS } from '@core/constants/filters';
+import { closeAlert, loadData } from '@shared/alerts/alerts';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  items: ICarouselItem[] = [];​
-  listOne;
-  listTwo;
-  listThree;
+  items: ICarouselItem[] = [];
+  listOne: IProduct[];
+  listTwo: IProduct[];
+  listThree: IProduct[];
+  loading: boolean;
   constructor(private products: ProductsService) { }
 
   ngOnInit(): void {
-    this.products.getByLastUnitsOffers(
-      1, 4, ACTIVE_FILTERS.ACTIVE,
-      true, 100).subscribe(result => {
-        console.log('Productos a menos de 100', result);
-        this.listTwo = result;
+    this.loading = true;
+    loadData('Cargando datos', 'Espera mientras carga la información');
+    this.products.getHomePage().subscribe( data => {
+      this.listOne = data.tech;
+      this.listTwo = data.topPrice;
+      this.listThree = data.busni;
+      this.items = this.manageCarousel(data.carousel);
+      closeAlert();
+      this.loading = false;
+    });
+  }
+
+  private manageCarousel(list) {
+    const itemsValues: Array<ICarouselItem> = [];
+    list.shopProducts.map((item) => {
+      itemsValues.push({
+        id: item.id,
+        title: item.product.name,
+        description: item.platform.name,
+        background: item.product.img,
+        url: ''
       });
-
-    this.products.getByPlatform(
-      1, 4, ACTIVE_FILTERS.ACTIVE,
-      true, 105
-    ).subscribe(result => {
-      console.log('Technology', result);
-      this.listOne = result;
     });
-
-    this.products.getByPlatform(
-      1, 4, ACTIVE_FILTERS.ACTIVE,
-      false, 79
-    ).subscribe(result => {
-      console.log('Business', result);
-      this.listThree = result;
-    });
-
-    this.products.getByLastUnitsOffers(
-      1, 5, ACTIVE_FILTERS.ACTIVE, true, -1, 290).subscribe( (result: IProduct[]) => {
-        result.map((item: IProduct) => {
-          this.items.push({
-            id: item.id,
-            title: item.name,
-            description: item.description,
-            background: item.img,
-            url: ''
-          });
-        });
-    });
-
+    return itemsValues;
   }
 
 }

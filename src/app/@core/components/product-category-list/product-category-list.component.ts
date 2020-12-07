@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProductCategoryListComponent implements OnInit {
   @Input() title = 'Título de la categoría';
   @Input() productsList: Array<IProduct> = [];
+  @Input() description = '';
   constructor() { }
 
   ngOnInit(): void {

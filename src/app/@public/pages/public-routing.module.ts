@@ -13,6 +13,10 @@ const routes: Routes = [
           import('./home/home.module').then(m => m.HomeModule)
       },
       {
+        path: `courses/:type/:filter`, loadChildren: () =>
+          import('./courses/courses.module').then(m => m.CoursesModule)
+      },
+      {
         path: `contact`, loadChildren: () =>
           import('./contact/contact.module').then(m => m.ContactModule)
       },
