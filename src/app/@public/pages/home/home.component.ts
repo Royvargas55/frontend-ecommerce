@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
         title: item.product.name,
         description: item.platform.name,
         background: item.product.img,
-        url: ''
+        url: '/courses/details/'.concat(item.id)
       });
     });
     return itemsValues;

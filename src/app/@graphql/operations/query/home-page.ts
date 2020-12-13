@@ -4,6 +4,7 @@ import { SHOP_PRODUCT_FRAGMENT } from '@graphql/operations/fragment/shop-product
 export const HOME_PAGE = gql`
   query HomePageInfo(
     $showPlatform: Boolean = false
+    $relationScreens: Boolean = false
   ) {
     carousel: shopProductsPlatforms(
         itemsPage: 4
