@@ -1,9 +1,9 @@
 import { ProductsService } from '@core/services/products.service';
-import { CURRENCIES_SYMBOL, CURRENCY_LIST } from '@mugan86/ng-shop-ui';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '@mugan86/ng-shop-ui/lib/interfaces/product.interface';
 import { closeAlert, loadData } from '@shared/alerts/alerts';
 import { ActivatedRoute } from '@angular/router';
+import { CURRENCY_SELECT } from '@core/constants/config';
 
 @Component({
   selector: 'app-details',
@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsComponent implements OnInit {
   product: IProduct;
   selectImage: string;
-  currencySelect = CURRENCIES_SYMBOL[CURRENCY_LIST.US_DOLLAR];
+  currencySelect = CURRENCY_SELECT;
   randomItems: Array<IProduct> = [];
   screens = [];
   relationalProducts: Array<object> = [];
