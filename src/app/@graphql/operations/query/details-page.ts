@@ -7,7 +7,11 @@ export const DETAILS_PAGE = gql`
     $showPlatform: Boolean = true
     $relationScreens: Boolean = true
   ) {
-    randomItems: shopProductsOffersLast(itemsPage: 6, random: true) {
+    randomItems: shopProductsPlatforms(
+        itemsPage: 6
+      platform: [105, 79, 166, 112]
+      random: true
+    ) {
       shopProducts {
         ...ShopProductObject
       }

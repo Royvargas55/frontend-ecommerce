@@ -108,9 +108,9 @@ export class ProductsService extends ApiService{
       console.log('randomItems', randomItems);
       return {
         product: this.setInObject(details.shopProduct, true),
-        screens: details.ShopProduct.product.screenshoot,
-        relational: details.ShopProduct.relationalProducts,
-        random: this.manageInfo(randomItems.ShopProducts, true)
+        screens: details.shopProduct.product.screenshoot,
+        relational: details.shopProduct.relationalProducts,
+        random: this.manageInfo(randomItems.shopProducts, true)
       };
     }));
   }

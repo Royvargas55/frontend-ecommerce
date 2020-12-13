@@ -1,7 +1,6 @@
 import { ProductsService } from '@core/services/products.service';
 import { CURRENCIES_SYMBOL, CURRENCY_LIST } from '@mugan86/ng-shop-ui';
 import { Component, OnInit } from '@angular/core';
-import products from '@data/products.json';
 import { IProduct } from '@mugan86/ng-shop-ui/lib/interfaces/product.interface';
 import { closeAlert, loadData } from '@shared/alerts/alerts';
 import { ActivatedRoute } from '@angular/router';
