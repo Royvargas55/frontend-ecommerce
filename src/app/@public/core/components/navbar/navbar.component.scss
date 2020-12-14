@@ -1,7 +1,15 @@
 .custom-bg {
-    background-color: #2b2f32;
+  background-color: #2b2f32;
 }
 
-.dropdown-item, .fas {
-    cursor: pointer;
+.dropdown-item,
+.fas {
+  cursor: pointer;
+}
+
+.badge.badge-success.notification {
+  position: relative;
+  top: -12px;
+  left: -2px;
+  border-radius: 10px;
 }

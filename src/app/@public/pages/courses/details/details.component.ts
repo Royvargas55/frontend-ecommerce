@@ -4,6 +4,8 @@ import { IProduct } from '@mugan86/ng-shop-ui/lib/interfaces/product.interface';
 import { closeAlert, loadData } from '@shared/alerts/alerts';
 import { ActivatedRoute } from '@angular/router';
 import { CURRENCY_SELECT } from '@core/constants/config';
+import { CartService } from '@shop/core/services/cart.service.ts.service';
+import { ICart } from '@shop/core/components/shopping-cart/shopping-cart.interface';
 
 @Component({
   selector: 'app-details',
@@ -18,7 +20,7 @@ export class DetailsComponent implements OnInit {
   screens = [];
   relationalProducts: Array<object> = [];
   loading: boolean;
-  constructor(private productService: ProductsService, private activatedRoute: ActivatedRoute) { }
+  constructor(private productService: ProductsService, private activatedRoute: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -27,12 +29,28 @@ export class DetailsComponent implements OnInit {
       this.loading = true;
       this.loadDataValue(+params.id);
     });
+
+    this.cartService.itemsVar$.subscribe((data: ICart) => {
+      console.log(data);
+      if (data.subtotal === 0) {
+        this.product.qty = 1;
+        return;
+      }
+
+      this.product.qty = this.findProduct(+this.product.id).qty;
+    });
+  }
+
+  findProduct(id: number) {
+    return this.cartService.cart.products.find( item => +item.id === id);
   }
 
   loadDataValue(id: number) {
     this.productService.getItem(id).subscribe( result => {
       console.log(result);
       this.product = result.product;
+      const saveProductInCart = this.findProduct(+this.product.id);
+      this.product.qty = (saveProductInCart !== undefined) ? saveProductInCart.qty : this.product.qty;
       this.selectImage = this.product.img;
       this.screens = result.screens;
       this.relationalProducts = result.relational;
@@ -42,7 +60,7 @@ export class DetailsComponent implements OnInit {
     });
   }
   changeValue(qty: number) {
-    console.log(qty);
+    this.product.qty = qty;
   }
 
   selectOtherPlatform($event) {
@@ -52,6 +70,10 @@ export class DetailsComponent implements OnInit {
 
   selectImgMain(i: number) {
     this.selectImage = this.screens[i];
+  }
+
+  addToCart() {
+    this.cartService.manageProduct(this.product);
   }
 
 }
